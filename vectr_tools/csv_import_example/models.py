@@ -50,21 +50,41 @@ class TestCase(BaseModel):
     detection_recommendations: Optional[str] = Field(alias="Detection Recommendations")
     sources: Optional[List[str]] = Field(alias="SourceIps")
     targets: Optional[List[str]] = Field(alias="TargetAssets")
-    defense_layers: Optional[List[str]]
-    detecting_tools: Optional[List[str]]
-    start_time: Optional[str]
-    start_time_epoch: Optional[int]
-    stop_time: Optional[str]
-    stop_time_epoch: Optional[int]
-    detection_time: Optional[str]
-    detection_time_epoch: Optional[int]
-    organizations: Optional[List[str]]
-    tags: Optional[List[str]]
-    references: Optional[List[str]]
+    defense_layers: Optional[List[str]] = Field(alias="ExpectedDetectionLayers")
+    detecting_tools: Optional[List[str]] = Field(alias="DetectingTools")
+    start_time: Optional[str] = Field(alias="Start Time")
+    # start_time_epoch: Optional[int]
+    stop_time: Optional[str] = Field(alias="Stop Time")
+    # stop_time_epoch: Optional[int]
+    detection_time: Optional[str] = Field(alias="Detection Time")
+    # detection_time_epoch: Optional[int]
+    organizations: Optional[List[str]] = Field(alias="Organizations")
+    tags: Optional[List[str]] = Field(alias="Tags")
+    references: Optional[List[str]] = Field(alias="References")
 
     # @TODO - combine for reuse, getting weird behavior
     @validator('sources', pre=True, allow_reuse=True)
     def validate_sources(cls, v: str) -> List[str]:
+        return v.split(',')
+
+    @validator('references', pre=True, allow_reuse=True)
+    def validate_references(cls, v: str) -> List[str]:
+        return v.split(',')
+
+    @validator('tags', pre=True, allow_reuse=True)
+    def validate_tags(cls, v: str) -> List[str]:
+        return v.split(',')
+
+    @validator('organizations', pre=True, allow_reuse=True)
+    def validate_organizations(cls, v: str) -> List[str]:
+        return v.split(',')
+
+    @validator('defense_layers', pre=True, allow_reuse=True)
+    def validate_defense_layers(cls, v: str) -> List[str]:
+        return v.split(',')
+
+    @validator('detecting_tools', pre=True, allow_reuse=True)
+    def validate_detecting_tools(cls, v: str) -> List[str]:
         return v.split(',')
 
     @validator('attacker_tools', pre=True, allow_reuse=True)
