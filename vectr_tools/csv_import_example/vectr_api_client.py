@@ -1,7 +1,7 @@
 from gql import Client, gql
 from gql.transport.requests import RequestsHTTPTransport
 from pydantic import BaseModel
-from typing import Dict, List
+from typing import Dict
 from models import Campaign, TestCase
 
 # REMOVE ME
@@ -14,8 +14,10 @@ class VectrGQLConnParams(BaseModel):
     api_key: str
     vectr_gql_url: str
 
+
 class TestCaseGQLInput(BaseModel):
     testCaseData: TestCase
+
 
 def get_client(connection_params: VectrGQLConnParams):
     transport = RequestsHTTPTransport(
@@ -165,8 +167,6 @@ def create_campaigns(connection_params: VectrGQLConnParams,
                 for campaign in campaigns_created:
                     campaigns[campaign["name"]] = {"id": campaign["id"], "name": campaign["name"]}
 
-    print(campaigns)
-
     return campaigns
 
 
@@ -236,10 +236,6 @@ def create_test_cases(connection_params: VectrGQLConnParams,
 
                 for test_case in test_cases_created:
                     test_cases[test_case["name"]] = {"id": test_case["id"], "name": test_case["name"]}
-
-    print(test_cases)
-
-    raise RuntimeError("Halt... testing")
 
     return test_cases
 

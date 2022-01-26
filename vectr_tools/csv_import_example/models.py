@@ -1,6 +1,6 @@
 # import re
 from typing import List, Optional, Dict
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, validator, root_validator
 
 """
 [
@@ -36,6 +36,7 @@ class TestCase(BaseModel):
     defenses: Optional[List[str]] = Field(alias="ExpectedDetectionLayers")
     detectionSteps: Optional[str] = Field(alias="Detection Recommendations")
     outcome: Optional[str] = Field(alias="Outcome")
+    outcomeNotes: Optional[str] = Field(alias="Outcome Notes")
     alertSeverity: Optional[str] = Field(alias="Alert Severity")
     alertTriggered: Optional[str] = Field(alias="Alert Triggered")
     activityLogged: Optional[str] = Field(alias="Activity Logged")
@@ -57,6 +58,19 @@ class TestCase(BaseModel):
     # start_time_epoch: Optional[int]
     # stop_time_epoch: Optional[int]
     # detection_time_epoch: Optional[int]
+
+    @root_validator(pre=True)
+    def check_technique(cls, values):
+        if 'MitreID' in values and values['MitreID']:
+            # everything is fine, MitreID exists, continue
+            return values
+
+        if 'Method' in values and values['Method']:
+            values['MitreID'] = values['Method']
+            return values
+
+        print(values)
+        raise ValueError("Non-empty Method (Attack Technique) or MitreID required for Test Case creation")
 
     # @TODO - combine for reuse, getting weird behavior with multiple annotations
     @validator('sources', pre=True, allow_reuse=True)
@@ -99,6 +113,7 @@ class TestCase(BaseModel):
     def validate_detecting_tools(cls, v: str) -> List[Dict[str, str]]:
         tools = []
         tool_names = v.split(',')
+        tool_names = list(filter(None, tool_names))
 
         for tool_name in tool_names:
             tools.append({"name": tool_name})
@@ -109,6 +124,7 @@ class TestCase(BaseModel):
     def validate_attack_tools(cls, v: str) -> List[Dict[str, str]]:
         tools = []
         tool_names = v.split(',')
+        tool_names = list(filter(None, tool_names))
 
         for tool_name in tool_names:
             tools.append({"name": tool_name})
@@ -141,6 +157,24 @@ class TestCase(BaseModel):
     @validator('activityLogged', pre=True, allow_reuse=True)
     def validate_upper_enum5(cls, v: str) -> str:
         return v.upper()
+
+    @validator('attackStart', pre=True, allow_reuse=True)
+    def validate_attack_start(cls, v: str) -> Optional[str]:
+        if not v:
+            return None
+        return v
+
+    @validator('attackStop', pre=True, allow_reuse=True)
+    def validate_attack_stop(cls, v: str) -> Optional[str]:
+        if not v:
+            return None
+        return v
+
+    @validator('detectionTime', pre=True, allow_reuse=True)
+    def validate_detection_time(cls, v: str) -> Optional[str]:
+        if not v:
+            return None
+        return v
 
 
 class Campaign(BaseModel):
