@@ -58,5 +58,11 @@ TARGET_DB="MY_USER_DB"
 # This should match the org name in VECTR that you want to use for created content
 ORG_NAME="Security Risk Advisors"
 ```
-#### 4. Execute main.py
+#### 4. Use Python to execute main.py
+
+Locally, this process takes about a minute and a half to run and import close to 1000 Test Cases. Depending on the size 
+of your CSV and network latency it could take more or less time.
+
+After completion, you should see new data in your database (may not match screenshot exactly).
+# ![VECTR](media/csvimport1.png)
 
