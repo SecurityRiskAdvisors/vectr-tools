@@ -34,19 +34,19 @@ class TestCase(BaseModel):
     targets: Optional[List[str]] = Field(alias="TargetAssets")
     sources: Optional[List[str]] = Field(alias="SourceIps")
     defenses: Optional[List[str]] = Field(alias="ExpectedDetectionLayers")
-    detectionSteps: Optional[str] = Field(alias="Detection Recommendations")
+    detectionSteps: Optional[List[str]] = Field(alias="Detection Recommendations")
     outcome: Optional[str] = Field(alias="Outcome")
     outcomeNotes: Optional[str] = Field(alias="Outcome Notes")
     alertSeverity: Optional[str] = Field(alias="Alert Severity")
     alertTriggered: Optional[str] = Field(alias="Alert Triggered")
     activityLogged: Optional[str] = Field(alias="Activity Logged")
-    detectionTime: Optional[str] = Field(alias="Detection Time")
+    detectionTime: Optional[float] = Field(alias="Detection Time Epoch")
     detectingDefenseTools: Optional[List[Dict[str, str]]] = Field(alias="DetectingTools")
     references: Optional[List[str]] = Field(alias="References")
     redTools: Optional[List[Dict[str, str]]] = Field(alias="Attacker Tools")
     operatorGuidance: Optional[str] = Field(alias="Command")
-    attackStart: Optional[str] = Field(alias="Start Time")
-    attackStop: Optional[str] = Field(alias="Stop Time")
+    attackStart: Optional[float] = Field(alias="Start Time Epoch")
+    attackStop: Optional[float] = Field(alias="Stop Time Epoch")
 
     # @TODO - need to add to API
     # -------------------------------------
@@ -109,6 +109,12 @@ class TestCase(BaseModel):
             return None
         return list(filter(None, defenses))
 
+    @validator('detectionSteps', pre=True, allow_reuse=True)
+    def validate_detection_steps(cls, v: str) -> Optional[List[str]]:
+        if not v:
+            return None
+        return [v]
+
     @validator('detectingDefenseTools', pre=True, allow_reuse=True)
     def validate_detecting_tools(cls, v: str) -> List[Dict[str, str]]:
         tools = []
@@ -159,22 +165,22 @@ class TestCase(BaseModel):
         return v.upper()
 
     @validator('attackStart', pre=True, allow_reuse=True)
-    def validate_attack_start(cls, v: str) -> Optional[str]:
+    def validate_attack_start(cls, v: str) -> Optional[float]:
         if not v:
             return None
-        return v
+        return float(v)
 
     @validator('attackStop', pre=True, allow_reuse=True)
-    def validate_attack_stop(cls, v: str) -> Optional[str]:
+    def validate_attack_stop(cls, v: str) -> Optional[float]:
         if not v:
             return None
-        return v
+        return float(v)
 
     @validator('detectionTime', pre=True, allow_reuse=True)
-    def validate_detection_time(cls, v: str) -> Optional[str]:
+    def validate_detection_time(cls, v: str) -> Optional[float]:
         if not v:
             return None
-        return v
+        return float(v)
 
 
 class Campaign(BaseModel):

@@ -16,7 +16,7 @@ assessments = get_assessments_from_csv(csv_path=env_config.get("CSV_PATH"))
 org_id = get_org_id_for_campaign_and_assessment_data(connection_params=connection_params,
                                                      org_name=env_config.get("ORG_NAME"))
 
-target_db = "test1"
+target_db = env_config.get("TARGET_DB")
 
 # Loop over results from CSV
 for assessment_name in assessments.keys():
