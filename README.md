@@ -2,12 +2,21 @@
 This repository contains sample tools for use with VECTR's API or application integration.
 
 ## GraphQL API Sample - CSV Import
+
+:bangbang: | **WARNING: This application can trigger VECTR's rate limiting pretty easily if other users are using the application**
+:---: | :---
+
 The `csv_import_example` directory contains a python project for interacting with VECTR's GraphQL API. It consumes a CSV 
 file in the format of a VECTR database CSV export and creates VECTR data based on the CSV contents. 
 This can be useful for populating VECTR with Purple Team or Red Team 
 activity data after-the-fact or building results from the output of automation tools. With some python knowledge, this program can be modified to 
 import data from other log file types like JSON. Pydantic models are powerful and can be used to parse most
  common file formats.
+
+### Requirements
+
+* Python3
+* Poetry
 
 ### Steps to run
 
@@ -60,9 +69,13 @@ ORG_NAME="Security Risk Advisors"
 ```
 #### 4. Use Python to execute main.py
 
+You will need some prior knowledge of running python applications and using the Poetry package management tool. This is a sample project rather than a complete module, but we're open to pull requests if you want to build on it.
+
 Locally, this process takes about a minute and a half to run and import close to 1000 Test Cases. Depending on the size 
 of your CSV and network latency it could take more or less time.
 
 After completion, you should see new data in your database (may not match screenshot exactly).
 # ![VECTR](media/csvimport1.png)
 
+### Notes
+* Currently only batches Test Case import requests per-campaign. Batch mutations could be added to improve performance and reduce # of requests. This will, however, reduce readability of the code some.
