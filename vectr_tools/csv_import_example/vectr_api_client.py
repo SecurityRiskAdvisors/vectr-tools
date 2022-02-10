@@ -72,7 +72,7 @@ def create_assessment(connection_params: VectrGQLConnParams,
             "assessmentData": [
                 {
                     "name": assessment_name,
-                    "organizationId": org_id
+                    "organizationIds": [org_id]
                 }
             ]
         }
