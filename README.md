@@ -3,7 +3,7 @@ This repository contains sample tools for use with VECTR's API or application in
 
 ## GraphQL API Sample - CSV Import
 
-:bangbang: | **WARNING: This application can trigger VECTR's rate limiting pretty easily if other users are using the application**
+:bangbang: | **WARNING: This application can trigger VECTR's rate limiting if other users are actively using the application**
 :---: | :---
 
 The `csv_import_example` directory contains a python project for interacting with VECTR's GraphQL API. It consumes a CSV 
