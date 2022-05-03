@@ -8,7 +8,7 @@ python-versions = "*"
 
 [[package]]
 name = "charset-normalizer"
-version = "2.0.10"
+version = "2.0.12"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
 category = "main"
 optional = false
@@ -19,7 +19,7 @@ unicode_backport = ["unicodedata2"]
 
 [[package]]
 name = "gql"
-version = "3.0.0"
+version = "3.2.0"
 description = "GraphQL client for Python"
 category = "main"
 optional = false
@@ -28,23 +28,23 @@ python-versions = "*"
 [package.dependencies]
 graphql-core = ">=3.2,<3.3"
 requests = {version = ">=2.26,<3", optional = true, markers = "extra == \"requests\""}
-requests_toolbelt = {version = ">=0.9.1,<1", optional = true, markers = "extra == \"requests\""}
+requests-toolbelt = {version = ">=0.9.1,<1", optional = true, markers = "extra == \"requests\""}
 urllib3 = {version = ">=1.26", optional = true, markers = "extra == \"requests\""}
 yarl = ">=1.6,<2.0"
 
 [package.extras]
 aiohttp = ["aiohttp (>=3.7.1,<3.9.0)"]
-all = ["aiohttp (>=3.7.1,<3.9.0)", "requests (>=2.26,<3)", "requests_toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)", "botocore (>=1.21,<2)", "websockets (>=9,<10)", "websockets (>=10,<11)"]
+all = ["aiohttp (>=3.7.1,<3.9.0)", "requests (>=2.26,<3)", "requests-toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)", "botocore (>=1.21,<2)", "websockets (>=9,<10)", "websockets (>=10,<11)"]
 botocore = ["botocore (>=1.21,<2)"]
-dev = ["aiohttp (>=3.7.1,<3.9.0)", "requests (>=2.26,<3)", "requests_toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)", "botocore (>=1.21,<2)", "black (==19.10b0)", "check-manifest (>=0.42,<1)", "flake8 (==3.8.1)", "isort (==4.3.21)", "mypy (==0.910)", "sphinx (>=3.0.0,<4)", "sphinx_rtd_theme (>=0.4,<1)", "sphinx-argparse (==0.2.5)", "types-aiofiles", "types-mock", "types-requests", "parse (==1.15.0)", "pytest (==6.2.5)", "pytest-asyncio (==0.16.0)", "pytest-cov (==3.0.0)", "mock (==4.0.2)", "vcrpy (==4.0.2)", "aiofiles", "websockets (>=9,<10)", "websockets (>=10,<11)"]
-requests = ["requests (>=2.26,<3)", "requests_toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)"]
-test = ["aiohttp (>=3.7.1,<3.9.0)", "requests (>=2.26,<3)", "requests_toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)", "botocore (>=1.21,<2)", "parse (==1.15.0)", "pytest (==6.2.5)", "pytest-asyncio (==0.16.0)", "pytest-cov (==3.0.0)", "mock (==4.0.2)", "vcrpy (==4.0.2)", "aiofiles", "websockets (>=9,<10)", "websockets (>=10,<11)"]
-test_no_transport = ["parse (==1.15.0)", "pytest (==6.2.5)", "pytest-asyncio (==0.16.0)", "pytest-cov (==3.0.0)", "mock (==4.0.2)", "vcrpy (==4.0.2)", "aiofiles"]
+dev = ["aiohttp (>=3.7.1,<3.9.0)", "requests (>=2.26,<3)", "requests-toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)", "botocore (>=1.21,<2)", "black (==22.3.0)", "check-manifest (>=0.42,<1)", "flake8 (==3.8.1)", "isort (==4.3.21)", "mypy (==0.910)", "sphinx (>=3.0.0,<4)", "sphinx-rtd-theme (>=0.4,<1)", "sphinx-argparse (==0.2.5)", "types-aiofiles", "types-mock", "types-requests", "parse (==1.15.0)", "pytest (==6.2.5)", "pytest-asyncio (==0.16.0)", "pytest-console-scripts (==1.3.1)", "pytest-cov (==3.0.0)", "mock (==4.0.2)", "vcrpy (==4.0.2)", "aiofiles", "websockets (>=9,<10)", "websockets (>=10,<11)"]
+requests = ["requests (>=2.26,<3)", "requests-toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)"]
+test = ["aiohttp (>=3.7.1,<3.9.0)", "requests (>=2.26,<3)", "requests-toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)", "botocore (>=1.21,<2)", "parse (==1.15.0)", "pytest (==6.2.5)", "pytest-asyncio (==0.16.0)", "pytest-console-scripts (==1.3.1)", "pytest-cov (==3.0.0)", "mock (==4.0.2)", "vcrpy (==4.0.2)", "aiofiles", "websockets (>=9,<10)", "websockets (>=10,<11)"]
+test_no_transport = ["parse (==1.15.0)", "pytest (==6.2.5)", "pytest-asyncio (==0.16.0)", "pytest-console-scripts (==1.3.1)", "pytest-cov (==3.0.0)", "mock (==4.0.2)", "vcrpy (==4.0.2)", "aiofiles"]
 websockets = ["websockets (>=9,<10)", "websockets (>=10,<11)"]
 
 [[package]]
 name = "graphql-core"
-version = "3.2.0"
+version = "3.2.1"
 description = "GraphQL implementation for Python, a port of GraphQL.js, the JavaScript reference implementation for GraphQL."
 category = "main"
 optional = false
@@ -123,22 +123,22 @@ requests = ">=2.0.1,<3.0.0"
 
 [[package]]
 name = "typing-extensions"
-version = "4.0.1"
-description = "Backported and Experimental Type Hints for Python 3.6+"
+version = "4.2.0"
+description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [[package]]
 name = "urllib3"
-version = "1.26.8"
+version = "1.26.9"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
 [package.extras]
-brotli = ["brotlipy (>=0.6.0)"]
+brotli = ["brotlicffi (>=0.8.0)", "brotli (>=1.0.9)", "brotlipy (>=0.6.0)"]
 secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
@@ -165,15 +165,16 @@ certifi = [
     {file = "certifi-2021.10.8.tar.gz", hash = "sha256:78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872"},
 ]
 charset-normalizer = [
-    {file = "charset-normalizer-2.0.10.tar.gz", hash = "sha256:876d180e9d7432c5d1dfd4c5d26b72f099d503e8fcc0feb7532c9289be60fcbd"},
-    {file = "charset_normalizer-2.0.10-py3-none-any.whl", hash = "sha256:cb957888737fc0bbcd78e3df769addb41fd1ff8cf950dc9e7ad7793f1bf44455"},
+    {file = "charset-normalizer-2.0.12.tar.gz", hash = "sha256:2857e29ff0d34db842cd7ca3230549d1a697f96ee6d3fb071cfa6c7393832597"},
+    {file = "charset_normalizer-2.0.12-py3-none-any.whl", hash = "sha256:6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df"},
 ]
 gql = [
-    {file = "gql-3.0.0.tar.gz", hash = "sha256:a21ff880a69caec8786be5cc6de7de6fc2f2b87547af8cd30746b9401ffd47b2"},
+    {file = "gql-3.2.0-py2.py3-none-any.whl", hash = "sha256:cea850a6a922af74e01386b5c299e3ca9cf491f0c4bf039541da8e8b1f50a437"},
+    {file = "gql-3.2.0.tar.gz", hash = "sha256:026b1c6b605cb9d6f4885ca5d8b1873a686a5b81842f356a834141bf123d4975"},
 ]
 graphql-core = [
-    {file = "graphql-core-3.2.0.tar.gz", hash = "sha256:86e2a0be008bfde19ef78388de8a725a1d942a9190ca431c24a60837973803ce"},
-    {file = "graphql_core-3.2.0-py3-none-any.whl", hash = "sha256:0dda7e63676f119bb3d814621190fedad72fda07a8e9ab780bedd9f1957c6dc6"},
+    {file = "graphql-core-3.2.1.tar.gz", hash = "sha256:9d1bf141427b7d54be944587c8349df791ce60ade2e3cccaf9c56368c133c201"},
+    {file = "graphql_core-3.2.1-py3-none-any.whl", hash = "sha256:f83c658e4968998eed1923a2e3e3eddd347e005ac0315fbb7ca4d70ea9156323"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
@@ -290,12 +291,12 @@ requests-toolbelt = [
     {file = "requests_toolbelt-0.9.1-py2.py3-none-any.whl", hash = "sha256:380606e1d10dc85c3bd47bf5a6095f815ec007be7a8b69c878507068df059e6f"},
 ]
 typing-extensions = [
-    {file = "typing_extensions-4.0.1-py3-none-any.whl", hash = "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"},
-    {file = "typing_extensions-4.0.1.tar.gz", hash = "sha256:4ca091dea149f945ec56afb48dae714f21e8692ef22a395223bcd328961b6a0e"},
+    {file = "typing_extensions-4.2.0-py3-none-any.whl", hash = "sha256:6657594ee297170d19f67d55c05852a874e7eb634f4f753dbd667855e07c1708"},
+    {file = "typing_extensions-4.2.0.tar.gz", hash = "sha256:f1c24655a0da0d1b67f07e17a5e6b2a105894e6824b92096378bb3668ef02376"},
 ]
 urllib3 = [
-    {file = "urllib3-1.26.8-py2.py3-none-any.whl", hash = "sha256:000ca7f471a233c2251c6c7023ee85305721bfdf18621ebff4fd17a8653427ed"},
-    {file = "urllib3-1.26.8.tar.gz", hash = "sha256:0e7c33d9a63e7ddfcb86780aac87befc2fbddf46c58dbb487e0855f7ceec283c"},
+    {file = "urllib3-1.26.9-py2.py3-none-any.whl", hash = "sha256:44ece4d53fb1706f667c9bd1c648f5469a2ec925fcf3a776667042d645472c14"},
+    {file = "urllib3-1.26.9.tar.gz", hash = "sha256:aabaf16477806a5e1dd19aa41f8c2b7950dd3c746362d7e3223dbe6de6ac448e"},
 ]
 yarl = [
     {file = "yarl-1.7.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:f2a8508f7350512434e41065684076f640ecce176d262a7d54f0da41d99c5a95"},

@@ -28,3 +28,14 @@ def get_assessments_from_csv(csv_path: str):
             current_campaign.test_cases.append(test_case)
 
     return assessments
+
+
+def csv_data_has_outcome_paths(assessments: dict):
+    for ag_name in assessments:
+        campaigns = assessments[ag_name].campaigns
+        for campaign_name in campaigns:
+            test_cases = campaigns[campaign_name].test_cases
+            for test_case in test_cases:
+                if test_case.outcomePath and test_case.outcomePath is not None and str(test_case.outcomePath).strip() != "":
+                    return True
+    return False

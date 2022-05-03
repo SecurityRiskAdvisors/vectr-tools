@@ -36,6 +36,7 @@ class TestCase(BaseModel):
     defenses: Optional[List[str]] = Field(alias="ExpectedDetectionLayers")
     detectionSteps: Optional[List[str]] = Field(alias="Detection Recommendations")
     outcome: Optional[str] = Field(alias="Outcome")
+    outcomePath: Optional[str] = Field(alias="Outcome Path")
     outcomeNotes: Optional[str] = Field(alias="Outcome Notes")
     alertSeverity: Optional[str] = Field(alias="Alert Severity")
     alertTriggered: Optional[str] = Field(alias="Alert Triggered")
@@ -47,17 +48,6 @@ class TestCase(BaseModel):
     operatorGuidance: Optional[str] = Field(alias="Command")
     attackStart: Optional[float] = Field(alias="Start Time Epoch")
     attackStop: Optional[float] = Field(alias="Stop Time Epoch")
-
-    # @TODO - need to add to API
-    # -------------------------------------
-    # outcome_notes: Optional[str] = Field(alias="Outcome Notes")
-    # -------------------------------------
-    # @NOTE - Not supported by API
-    # -------------------------------------
-    # technique: Optional[str] = Field(alias="Method")
-    # start_time_epoch: Optional[int]
-    # stop_time_epoch: Optional[int]
-    # detection_time_epoch: Optional[int]
 
     @root_validator(pre=True)
     def check_technique(cls, values):

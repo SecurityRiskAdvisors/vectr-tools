@@ -1,4 +1,5 @@
 from gql import Client, gql
+from gql.dsl import DSLQuery, DSLSchema, dsl_gql
 from gql.transport.requests import RequestsHTTPTransport
 from pydantic import BaseModel
 from typing import Dict
@@ -26,6 +27,30 @@ def get_client(connection_params: VectrGQLConnParams):
     )
 
     return Client(transport=transport, fetch_schema_from_transport=True)
+
+
+def api_can_use_new_outcome_paths(connection_params: VectrGQLConnParams) -> bool:
+
+    client = get_client(connection_params)
+
+    with client as session:
+        assert client.schema is not None
+
+        ds = DSLSchema(client.schema)
+        try:
+            tcSchema = ds.TestCase._type
+            tcFields = tcSchema.fields
+
+            createTcSchema = ds._schema.type_map.get('CreateTestCaseDataInput')
+
+            createTcFields = createTcSchema.fields
+            if 'outcome' in tcFields and 'outcomePath' in createTcFields:
+                return True
+        except:
+            return False
+
+    return False
+
 
 
 def create_assessment(connection_params: VectrGQLConnParams,
@@ -173,7 +198,8 @@ def create_campaigns(connection_params: VectrGQLConnParams,
 def create_test_cases(connection_params: VectrGQLConnParams,
                       db: str,
                       campaign_id: str,
-                      test_cases: Dict[str, TestCase]) -> Dict[str, dict]:
+                      test_cases: Dict[str, TestCase],
+                      api_has_outcome_paths: bool) -> Dict[str, dict]:
     """Creates VECTR Test Cases in the target Campaign and Database
 
         Parameters
@@ -210,8 +236,11 @@ def create_test_cases(connection_params: VectrGQLConnParams,
 
     test_case_data = []
     for test_case in test_cases:
+        test_case_dict = dict(test_case)
+        if not api_has_outcome_paths:
+            del test_case_dict['outcomePath']
         test_case_data.append({
-            "testCaseData": dict(test_case)
+            "testCaseData": test_case_dict
         })
 
     test_case_vars = {
