@@ -1,8 +1,11 @@
 import csv
+import sys
 from models import TestCase, Assessment, Campaign
 
 
 def get_assessments_from_csv(csv_path: str):
+    csv.field_size_limit(sys.maxsize)
+
     assessments = {}
     with open(csv_path, newline='', encoding='utf-8-sig') as csvfile:
         reader = csv.DictReader(csvfile)
