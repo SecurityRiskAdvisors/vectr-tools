@@ -136,23 +136,23 @@ class TestCase(BaseModel):
 
     @validator('status', pre=True, allow_reuse=True)
     def validate_upper_enum1(cls, v: str) -> str:
-        return v.upper()
+        return v
 
     @validator('outcome', pre=True, allow_reuse=True)
     def validate_upper_enum2(cls, v: str) -> str:
-        return v.upper()
+        return v
 
     @validator('alertSeverity', pre=True, allow_reuse=True)
     def validate_upper_enum3(cls, v: str) -> str:
-        return v.upper()
+        return v
 
     @validator('alertTriggered', pre=True, allow_reuse=True)
     def validate_upper_enum4(cls, v: str) -> str:
-        return v.upper()
+        return v
 
     @validator('activityLogged', pre=True, allow_reuse=True)
     def validate_upper_enum5(cls, v: str) -> str:
-        return v.upper()
+        return v
 
     @validator('attackStart', pre=True, allow_reuse=True)
     def validate_attack_start(cls, v: str) -> Optional[float]:
