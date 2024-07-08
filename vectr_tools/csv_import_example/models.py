@@ -179,5 +179,5 @@ class Campaign(BaseModel):
 
 
 class Assessment(BaseModel):
-    name = str
+    name: str
     campaigns: Optional[Dict[str, Campaign]]
