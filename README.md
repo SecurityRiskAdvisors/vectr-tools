@@ -35,11 +35,8 @@ Login with the user who will be acting through the API key.
 
 #### 2. Create an API key
 
-Browse to the user profile.
+Browse to the user profile and create an API key for the user
 # ![VECTR](media/apikey2.png)
-
-Create an API key for the user
-# ![VECTR](media/apikey3.png)
 
 Record the API key for use in the next step. You will need the Client ID and the Secret, separated by a colon.
 
